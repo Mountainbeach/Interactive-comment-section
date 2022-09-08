@@ -79,6 +79,7 @@ function displayComment(comment, currentUser) {
     let upvote_button = document.createElement("button");
     upvote_button.classList.add("upvote");
     upvote_button.setAttribute("onClick", "upVote(this)");
+    upvote_button.setAttribute("aria-label", "Upvote comment");
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
@@ -91,6 +92,7 @@ function displayComment(comment, currentUser) {
     let downvote_button = document.createElement("button");
     downvote_button.classList.add("downvote");
     downvote_button.setAttribute("onClick", "downVote(this)");
+    downvote_button.setAttribute("aria-label", "Downvote comment");
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
@@ -213,6 +215,7 @@ function createReplies(parent, reply, currentUser) {
     let upvote_button = document.createElement("button");
     upvote_button.classList.add("upvote");
     upvote_button.setAttribute("onClick", "upVote(this)");
+    upvote_button.setAttribute("aria-label", "Upvote comment");
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
@@ -225,6 +228,7 @@ function createReplies(parent, reply, currentUser) {
     let downvote_button = document.createElement("button");
     downvote_button.classList.add("downvote");
     downvote_button.setAttribute("onClick", "downVote(this)");
+    downvote_button.setAttribute("aria-label", "Downvote comment");
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
