@@ -39,6 +39,7 @@ function displayComment(comment, currentUser) {
     let comment_image = document.createElement("img");
     comment_image.src = comment.user.image.png;
     comment_header.appendChild(comment_image);
+    comment_image.setAttribute("alt", "");
     // Creating username in header
     let comment_user_name = document.createElement("h2");
     comment_user_name.classList.add("comment-user-name");
@@ -83,6 +84,7 @@ function displayComment(comment, currentUser) {
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
+    upvote_image.setAttribute("alt", "");
     upvote_button.appendChild(upvote_image);
 
     let rating = document.createElement("h3");
@@ -96,6 +98,7 @@ function displayComment(comment, currentUser) {
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
+    downvote_image.setAttribute("alt", "");
     downvote_button.appendChild(downvote_image);
 
     // Creating div for buttons
@@ -111,6 +114,7 @@ function displayComment(comment, currentUser) {
         buttons_div.appendChild(reply_button);
         let reply_image = document.createElement("img");
         reply_image.src = "images/icon-reply.svg";
+        reply_image.setAttribute("alt", "");
         reply_button.appendChild(reply_image);
         let reply_button_text = document.createElement("p");
         reply_button_text.innerHTML = "Reply";
@@ -123,6 +127,7 @@ function displayComment(comment, currentUser) {
         buttons_div.appendChild(delete_button);
         let delete_image = document.createElement("img");
         delete_image.src = "images/icon-delete.svg";
+        delete_image.setAttribute("alt", "");
         delete_button.appendChild(delete_image);
         let delete_button_text = document.createElement("p");
         delete_button_text.innerHTML = "Delete";
@@ -133,6 +138,7 @@ function displayComment(comment, currentUser) {
         buttons_div.appendChild(edit_button);
         let edit_image = document.createElement("img");
         edit_image.src = "images/icon-edit.svg";
+        edit_image.setAttribute("alt", "");
         edit_button.appendChild(edit_image);
         let edit_button_text = document.createElement("p");
         edit_button_text.innerHTML = "Edit";
@@ -164,6 +170,7 @@ function createReplies(parent, reply, currentUser) {
     // Creating image in header
     let comment_image = document.createElement("img");
     comment_image.src = reply.user.image.png;
+    comment_image.setAttribute("alt", "");
     comment_header.appendChild(comment_image);
     // Creating username in header
     let comment_user_name = document.createElement("h2");
@@ -219,6 +226,7 @@ function createReplies(parent, reply, currentUser) {
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
+    upvote_image.setAttribute("alt", "");
     upvote_button.appendChild(upvote_image);
 
     let rating = document.createElement("h3");
@@ -232,6 +240,7 @@ function createReplies(parent, reply, currentUser) {
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
+    downvote_image.setAttribute("alt", "");
     downvote_button.appendChild(downvote_image);
 
     //Creating buttons div
@@ -249,6 +258,7 @@ function createReplies(parent, reply, currentUser) {
         buttons_div.appendChild(reply_button);
         let reply_image = document.createElement("img");
         reply_image.src = "images/icon-reply.svg";
+        reply_image.setAttribute("alt", "");
         reply_button.appendChild(reply_image);
         let reply_button_text = document.createElement("p");
         reply_button_text.innerHTML = "Reply";
@@ -261,6 +271,7 @@ function createReplies(parent, reply, currentUser) {
         buttons_div.appendChild(delete_button);
         let delete_image = document.createElement("img");
         delete_image.src = "images/icon-delete.svg";
+        delete_image.setAttribute("alt", "");
         delete_button.appendChild(delete_image);
         let delete_button_text = document.createElement("p");
         delete_button_text.innerHTML = "Delete";
@@ -272,6 +283,7 @@ function createReplies(parent, reply, currentUser) {
         buttons_div.appendChild(edit_button);
         let edit_image = document.createElement("img");
         edit_image.src = "images/icon-edit.svg";
+        edit_image.setAttribute("alt", "");
         edit_button.appendChild(edit_image);
         let edit_button_text = document.createElement("p");
         edit_button_text.innerHTML = "Edit";
@@ -341,6 +353,7 @@ function replyToComment(x) {
 
     // NEED TO FIX THIS IMAGE, THIS IS TEMPORARY!
     comment_image.src = "./images/avatars/image-juliusomo.png";
+    comment_image.setAttribute("alt", "");
     replyContainer.appendChild(comment_image);
 
     let send_button = document.createElement("button");
