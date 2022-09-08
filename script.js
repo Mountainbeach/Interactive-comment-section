@@ -14,20 +14,9 @@ fetchComments(jsonURL);
 async function fetchComments(url) {
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data.comments);
-    console.log(data.comments[0]);
 
     for (let i = 0; i < data.comments.length; i++) {
-        console.log(data.comments[i]);
         displayComment(data.comments[i], data.currentUser);
-        /* if (data.comments[i].replies.length) {
-            console.log(data.comments[i].replies.length);
-            for (let j = 0; j < data.comments[i].replies.length; j++) {
-                console.log(j);
-                //console.log(data.comments[i].replies[j]);
-                displayComment(data.comments[i].replies[j]);
-            }
-        } */
     }
 }
 
@@ -35,7 +24,6 @@ function displayComment(comment, currentUser) {
     // Creating the comment
     let container = document.createElement("div");
     container.classList.add("comment-tree-container");
-    //document.body.appendChild(container);
     document.querySelector(".wrapper").appendChild(container);
 
     let new_comment = document.createElement("div");
@@ -59,7 +47,6 @@ function displayComment(comment, currentUser) {
 
     // If current user create a "you" tag
     if (comment.user.username == currentUser.username) {
-        console.log("YESBOI");
         let you_marker = document.createElement("p");
         you_marker.classList.add("you-marker");
         you_marker.innerHTML = "you";
@@ -79,7 +66,7 @@ function displayComment(comment, currentUser) {
     new_comment.appendChild(comment_content);
 
     // Creating rating div //
-    //                     //
+    //           downvoteupvote          //
     let rating_div = document.createElement("div");
     rating_div.classList.add("rating-div");
     new_comment.appendChild(rating_div);
@@ -89,8 +76,9 @@ function displayComment(comment, currentUser) {
     rating_container.classList.add("rating-container");
     rating_div.appendChild(rating_container);
 
-    let upvote_button = document.createElement("div");
+    let upvote_button = document.createElement("button");
     upvote_button.classList.add("upvote");
+    upvote_button.setAttribute("onClick", "upVote(this)");
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
@@ -100,8 +88,9 @@ function displayComment(comment, currentUser) {
     rating.innerHTML = comment.score;
     rating_container.appendChild(rating);
 
-    let downvote_button = document.createElement("div");
+    let downvote_button = document.createElement("button");
     downvote_button.classList.add("downvote");
+    downvote_button.setAttribute("onClick", "downVote(this)");
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
@@ -159,9 +148,6 @@ function displayComment(comment, currentUser) {
 }
 
 function createReplies(parent, reply, currentUser) {
-    console.log(parent);
-    console.log(reply);
-
     // Creating the comment
     let new_comment = document.createElement("div");
     new_comment.classList.add("comment");
@@ -190,7 +176,6 @@ function createReplies(parent, reply, currentUser) {
     }
 
     if (reply.user.username == currentUsername) {
-        console.log("YESBOI");
         let you_marker = document.createElement("p");
         you_marker.classList.add("you-marker");
         you_marker.innerHTML = "you";
@@ -225,8 +210,9 @@ function createReplies(parent, reply, currentUser) {
     rating_container.classList.add("rating-container");
     rating_div.appendChild(rating_container);
 
-    let upvote_button = document.createElement("div");
+    let upvote_button = document.createElement("button");
     upvote_button.classList.add("upvote");
+    upvote_button.setAttribute("onClick", "upVote(this)");
     rating_container.appendChild(upvote_button);
     let upvote_image = document.createElement("img");
     upvote_image.src = "images/icon-plus.svg";
@@ -236,8 +222,9 @@ function createReplies(parent, reply, currentUser) {
     rating.innerHTML = reply.score;
     rating_container.appendChild(rating);
 
-    let downvote_button = document.createElement("div");
+    let downvote_button = document.createElement("button");
     downvote_button.classList.add("downvote");
+    downvote_button.setAttribute("onClick", "downVote(this)");
     rating_container.appendChild(downvote_button);
     let downvote_image = document.createElement("img");
     downvote_image.src = "images/icon-minus.svg";
@@ -255,7 +242,6 @@ function createReplies(parent, reply, currentUser) {
         let reply_button = document.createElement("button");
         reply_button.classList.add("reply-button");
         reply_button.setAttribute("onClick", "replyToComment(this)");
-        //reply_button.setAttribute("onClick", "replyToComment(this)");
         buttons_div.appendChild(reply_button);
         let reply_image = document.createElement("img");
         reply_image.src = "images/icon-reply.svg";
@@ -323,7 +309,6 @@ function openDeleteWindow(comment) {
     let confirm_button = document.createElement("button");
     confirm_button.classList.add("confirm-button");
     confirm_button.innerHTML = "YES, DELETE";
-    // confirm_button.setAttribute("onclick", "confirmDelete()");
     window_buttons_container.appendChild(confirm_button);
 
     confirm_button.addEventListener("click", () => {
@@ -338,7 +323,7 @@ function replyToComment(x) {
     }
     let comment = x.parentElement.parentElement;
     let replyToName = comment.querySelector(".comment-user-name").innerHTML;
-    console.log(comment);
+
     replyContainer = document.createElement("div");
     replyContainer.classList.add("comment");
     replyContainer.classList.add("new-reply");
@@ -374,20 +359,13 @@ function replyToComment(x) {
 async function sendReply(x, replyToName) {
     let text = x.parentElement.parentElement.querySelector("textarea");
 
-    console.log("THIS IS WHERE I WILL CHECK FOR .replies VVVVV");
-    console.log(x.parentNode.parentNode.parentNode);
     if (x.parentNode.parentNode.parentNode.classList.contains("replies")) {
         var z = x.parentNode.parentNode.parentNode;
         while (z.classList.contains("replies")) {
-            console.log("HIHIHI");
-            console.log(z);
             z = z.parentNode;
         }
-        console.log("THIS IS NOW Z VVV");
-        console.log(z);
     } else {
         var z = x.parentNode.parentNode.parentNode;
-        console.log("Z IS = " + z);
     }
 
     if (!z.querySelector(".replies")) {
@@ -430,15 +408,11 @@ function editComment(editButton) {
     let comment = editButton.parentNode.parentNode;
     let oldText = comment.querySelector(".content").innerHTML;
     let replyTo = comment.querySelector("span").outerHTML;
-    console.log(oldText);
 
-    //comment.querySelector(".content").innerHTML = replyTo + "YO MAN";
-    //comment.querySelector(".content").innerHTML = "";
     comment.querySelector(".content").style.display = "none";
     editBox = document.createElement("textarea");
     editBox.classList.add("edit-input");
     comment.querySelector(".comment-header").after(editBox);
-    console.log(comment.querySelector(".content"));
 
     editButton.setAttribute("onClick", "applyEdit(this,'" + replyTo + "')");
     editButton.querySelector("p").innerHTML = "Apply";
@@ -485,4 +459,42 @@ function undoEdit(deleteButton, oldText) {
     comment.querySelector("textarea").remove();
 
     comment.querySelector(".content").style.display = null;
+}
+
+function upVote(x) {
+    let rating = x.parentElement.querySelector("h3");
+    if (x.classList.contains("voted")) {
+        rating.innerHTML--;
+        x.classList.remove("voted");
+        return;
+    }
+    if (
+        x.parentElement.querySelector(".downvote").classList.contains("voted")
+    ) {
+        x.parentElement.querySelector(".downvote").classList.remove("voted");
+        rating.innerHTML++;
+        rating.innerHTML++;
+        x.classList.add("voted");
+        return;
+    }
+    rating.innerHTML++;
+    x.classList.add("voted");
+}
+
+function downVote(x) {
+    let rating = x.parentElement.querySelector("h3");
+    if (x.classList.contains("voted")) {
+        rating.innerHTML++;
+        x.classList.remove("voted");
+        return;
+    }
+    if (x.parentElement.querySelector(".upvote").classList.contains("voted")) {
+        x.parentElement.querySelector(".upvote").classList.remove("voted");
+        rating.innerHTML--;
+        rating.innerHTML--;
+        x.classList.add("voted");
+        return;
+    }
+    rating.innerHTML--;
+    x.classList.add("voted");
 }

@@ -264,6 +264,11 @@ button:hover {
 .downvote {
     display: flex;
 }
+.upvote:hover,
+.downvote:hover {
+    cursor: pointer;
+}
+
 .buttons-div {
     float: right;
     display: flex;
@@ -272,7 +277,7 @@ button:hover {
     align-items: center;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 42em) {
     .wrapper {
         padding-block: 4rem;
         gap: 1.25rem;
